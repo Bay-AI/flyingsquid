@@ -1,11 +1,6 @@
-from pgmpy.models import MarkovModel
-from pgmpy.factors.discrete import JointProbabilityDistribution, DiscreteFactor
-from itertools import combinations
 from flyingsquid.helpers import *
 import numpy as np
 import math
-from tqdm import tqdm
-import sys
 import random
 
 class Mixin:
@@ -322,7 +317,7 @@ class Mixin:
         elif solve_method in [ 'triplet_mean', 'triplet_median' ]:
             return self._triplet_method_mean_median(expectations_to_estimate, solve_method)
         else:
-            raise NotImplemented('Unknown solve method {}'.format(solve_method))
+            raise NotImplementedError('Unknown solve method {}'.format(solve_method))
     
     def _triplet_method_probabilities(self, triplets, lambda_moment_vals, lambda_zeros,
                                      abstention_probabilities, sign_recovery, solve_method):
